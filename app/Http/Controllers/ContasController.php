@@ -53,10 +53,10 @@ class ContasController extends Controller
      * @param Conta        $conta
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestConta $request, Conta $conta)
+    public function update(RequestConta $request)
     {
-        $request->update($conta);
+        $request->update();
 
-        return response()->json('', 200);
+        return redirect()->back();
     }
 }

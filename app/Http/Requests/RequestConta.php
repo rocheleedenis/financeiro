@@ -40,6 +40,7 @@ class RequestConta extends FormRequest
             'user_id'  => auth()->id(),
             'saldo'    => preg_replace('/\D/', '', $this->saldo),
             'banco_id' => $this->banco_id,
+            'nome'     => $this->nome,
             'tipo'     => $this->tipo
         ]);
     }
@@ -47,15 +48,16 @@ class RequestConta extends FormRequest
     /**
      * Atualiza uma conta existente.
      *
-     * @param Conta $conta
      * @return \App\Conta
      */
-    public function update($conta)
+    public function update()
     {
+        $conta = Conta::find($this->id);
+
         $conta->fill([
-            'saldo'    => preg_replace('/\D/', '', $this->saldo),
+            'saldo'    => $this->saldo ? preg_replace('/\D/', '', $this->saldo) : 0,
             'banco_id' => $this->banco_id,
-            'tipo'     => $this->tipo
+            'nome'     => $this->nome
         ]);
 
         $conta->save();

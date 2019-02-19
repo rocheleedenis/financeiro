@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['as' => 'contas.', 'prefix' => 'contas'], function () {
-    Route::patch('/{conta}', ['as' => 'update', 'uses' => 'ContasController@update']);
+    Route::post('/update', ['as' => 'update', 'uses' => 'ContasController@update']);
     Route::get('/', ['as' => 'index', 'uses' => 'ContasController@index']);
     Route::post('/', ['as' => 'store', 'uses' => 'ContasController@store']);
 });
